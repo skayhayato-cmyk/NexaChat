@@ -1,0 +1,237 @@
+/* app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --nexa-primary: #6272f1;
+  --nexa-secondary: #a78bfa;
+  --nexa-accent: #38bdf8;
+  --nexa-success: #34d399;
+  --nexa-danger: #f87171;
+  --nexa-warn: #fbbf24;
+  --bg-900: #0a0a0f;
+  --bg-800: #111118;
+  --bg-700: #1a1a25;
+  --bg-600: #22222f;
+  --bg-500: #2d2d3e;
+  --bg-400: #3d3d52;
+  --border: rgba(98, 114, 241, 0.15);
+  --border-hover: rgba(98, 114, 241, 0.35);
+  --text-primary: #f1f1ff;
+  --text-secondary: #9090b8;
+  --text-muted: #5a5a7a;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bg-400); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--nexa-primary); }
+
+/* Selection */
+::selection { background: rgba(98, 114, 241, 0.3); color: white; }
+
+/* Base */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg-900); color: var(--text-primary); }
+
+/* Glass morphism utility */
+.glass {
+  background: rgba(17, 17, 24, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+}
+
+.glass-strong {
+  background: rgba(26, 26, 37, 0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid var(--border);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #6272f1, #a78bfa, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Nexa glow button */
+.btn-nexa {
+  background: linear-gradient(135deg, #6272f1, #4f55e5);
+  box-shadow: 0 0 20px rgba(98, 114, 241, 0.4);
+  transition: all 0.2s ease;
+}
+.btn-nexa:hover {
+  box-shadow: 0 0 35px rgba(98, 114, 241, 0.6);
+  transform: translateY(-1px);
+}
+.btn-nexa:active { transform: translateY(0); }
+
+/* Message bubble */
+.msg-bubble-own {
+  background: linear-gradient(135deg, #6272f1, #4f55e5);
+  border-radius: 18px 18px 4px 18px;
+}
+.msg-bubble-other {
+  background: var(--bg-600);
+  border-radius: 18px 18px 18px 4px;
+  border: 1px solid var(--border);
+}
+
+/* Online indicator pulse */
+.online-ring::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: var(--nexa-success);
+  animation: pulseRing 2s ease-out infinite;
+  opacity: 0.5;
+}
+
+/* Input style */
+.nexa-input {
+  background: var(--bg-700);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+.nexa-input:focus {
+  outline: none;
+  border-color: var(--nexa-primary);
+  box-shadow: 0 0 0 3px rgba(98, 114, 241, 0.15);
+}
+.nexa-input::placeholder { color: var(--text-muted); }
+
+/* Noise texture overlay */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-600) 25%, var(--bg-500) 50%, var(--bg-600) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Typing indicator dots */
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  animation: typingBounce 1.2s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* Notification badge */
+.notif-badge {
+  background: var(--nexa-danger);
+  border-radius: 99px;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+}
+
+/* File type colors */
+.file-zip  { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+.file-pdf  { background: linear-gradient(135deg, #f87171, #ef4444); }
+.file-doc  { background: linear-gradient(135deg, #60a5fa, #3b82f6); }
+.file-xls  { background: linear-gradient(135deg, #34d399, #10b981); }
+.file-txt  { background: linear-gradient(135deg, #9090b8, #6060a0); }
+.file-other{ background: linear-gradient(135deg, #a78bfa, #8b5cf6); }
+
+/* Voice note wave */
+.voice-wave {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.voice-bar {
+  width: 3px;
+  border-radius: 99px;
+  background: currentColor;
+  animation: voiceWave 1s ease-in-out infinite;
+}
+.voice-bar:nth-child(1) { height: 8px; }
+.voice-bar:nth-child(2) { height: 16px; animation-delay: 0.1s; }
+.voice-bar:nth-child(3) { height: 12px; animation-delay: 0.2s; }
+.voice-bar:nth-child(4) { height: 20px; animation-delay: 0.3s; }
+.voice-bar:nth-child(5) { height: 10px; animation-delay: 0.4s; }
+.voice-bar:nth-child(6) { height: 16px; animation-delay: 0.5s; }
+
+@keyframes voiceWave {
+  0%, 100% { transform: scaleY(1); opacity: 0.7; }
+  50% { transform: scaleY(1.6); opacity: 1; }
+}
+
+/* Sticker hover */
+.sticker-card:hover { transform: scale(1.05) rotate(-2deg); }
+.sticker-card { transition: transform 0.2s ease; }
+
+/* Mesh gradient background */
+.mesh-bg {
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(98, 114, 241, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(167, 139, 250, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(56, 189, 248, 0.05) 0%, transparent 70%),
+    var(--bg-900);
+}
+
+/* Profile ring */
+.avatar-ring {
+  background: linear-gradient(135deg, #6272f1, #a78bfa, #38bdf8);
+  padding: 2px;
+  border-radius: 50%;
+}
+
+/* Checkbox custom */
+.nexa-checkbox {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border-hover);
+  border-radius: 5px;
+  background: var(--bg-700);
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  flex-shrink: 0;
+}
+.nexa-checkbox:checked {
+  background: var(--nexa-primary);
+  border-color: var(--nexa-primary);
+}
+.nexa-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+}
